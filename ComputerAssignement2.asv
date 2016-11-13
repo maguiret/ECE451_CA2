@@ -22,24 +22,14 @@ clear
 %a
 %Determining transfer function
 syms s 
-G_coef = (poly([0 -3 -7 -8]));
-G = 1/(s^4+18*s^3+101*s^2+168*s);
+G_coef = (poly([0 3 7 8]));
+G = 1/(s^4-18*s^3+101*s^2-168*s);
 H = (s+30)/(s^2+20*s+200);
 T = G/(1+G*H);
 %making the transfer function
 s = tf('s');
-T = ((s^2+20*s+200)/(s^6+38*s^5+661*s^4+5788*s^3+23560*s^2+33601*s+30));
-rlocus(T);
-pause;
+T = ((s^2+20*s+200)/(s^6+2*s^5-59*s^4-1748*s^3+16840*s^2-33599*s+30));
+rlocus(T)
+pause('on')
 %b
-axis([-2 2 -2 2]);
-pause;
-%c
-zeta = .707;
-Wn = 2;
-sgrid(zeta,1.8);
-%d
-k = rlocfind(T);
-%e
-closed = feedback(k*T,1);
-step(closed);
+axis([-2 2 -2 2])
